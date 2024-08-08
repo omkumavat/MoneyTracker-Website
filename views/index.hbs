@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Tracker Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <li id="exp">Expenses</li>
+                <li id="inc">Income</li>
+                <li id="trans">Transactions</li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h2>Dashboard</h2>
+            <div class="summary">
+                <div class="summary-item">
+                    <h3>Total Expenses</h3>
+                    <p>&#8377; {{totalExp}}</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Total Income</h3>
+                    <p>&#8377; {{totalInc}}</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Total Balance</h3>
+                    <p>&#8377; {{totalBalance}}</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Min Expense</h3>
+                    <p>&#8377; {{minExpense}}</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Max Expense</h3>
+                    <p>&#8377; {{maxExpense}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+         document.getElementById('inc').addEventListener('click', function (event) {
+            window.location.href = '/income';
+        }); 
+        document.getElementById('exp').addEventListener('click', function (event) {
+            window.location.href = '/expense';
+        });
+        document.getElementById('trans').addEventListener('click', function (event) {
+            window.location.href = '/transaction';
+        }); 
+    </script>
+</body>
+</html>

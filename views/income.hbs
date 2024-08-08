@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" type="text/css" href="income.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <style>
+        #ainc {
+            color: #007bff;
+        }
+
+        #ainc:hover {
+            color: #026cde;
+        }
+
+        #adel {
+            color: rgb(235, 68, 68);
+            background-color: transparent;
+            border: none;
+        }
+
+        #adel:hover {
+            cursor: pointer;
+            color: rgb(207, 0, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <b>
+                    <li id="dash">Dashboard</li>
+                </b>
+                <li id="exp">Expenses</li>
+                <li id="trans">Transactions</li>
+            </ul>
+        </div>
+        <!-- Form -->
+        <div class="form-container">
+            <h2>Add Income</h2>
+            <form id="expenseForm" method="POST" action="/incomeSubmit">
+                {{> formBody}}
+                <div class="form-actions">
+                    <button type="submit">Add Income</button>
+                    <button type="reset">Reset</button>
+                </div>
+            </form>
+        </div>
+        <!-- Transactions List -->
+        <div class="transactions">
+            {{#if Incomess.length}}
+            <h2>Previous Income</h2>
+            {{#each Incomess}}
+            <div class="transaction-item">
+                <span>&#8377;&nbsp;{{this.amount}} &nbsp;&nbsp;&nbsp;{{this.date}} &nbsp;&nbsp;&nbsp;
+                    {{this.purpose}}</span>
+                <a href="/income/{{this.id}}" id="ainc"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;
+                <form action="/deleteIncome/{{this.id}}?_method=DELETE" method="POST">
+                    <button type="submit" id="adel"><i class="fas fa-trash"></i></button>
+                </form>
+            </div>
+            {{/each}}
+            {{else}}
+            <h2>No Previous Incomes</h2>
+            {{/if}}
+        </div>
+    </div>
+    <!-- Font Awesome CDN for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script>
+        document.getElementById('exp').addEventListener('click', function (event) {
+            window.location.href = '/expense';
+        });
+        document.getElementById('dash').addEventListener('click', function (event) {
+            window.location.href = '/';
+        });
+        document.getElementById('trans').addEventListener('click', function (event) {
+            window.location.href = '/transaction';
+        }); 
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" type="text/css" href="/expense.css">
+    <link rel="stylesheet" type="text/css" href="/index.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <b>
+                    <li id="dash">Dashboard</li>
+                </b>
+                <li id="inc">Income</li>
+                <li>Transactions</li>
+            </ul>
+        </div>
+        <!-- Form -->
+        <div class="form-container">
+            <form action="/editExpense/{{ID}}?_method=PUT" id="expenseForm" method="POST">
+            <h2>Edit Expense</h2>
+                {{> formBody}}
+                <div class="form-actions">
+                    <button type="submit">Save Expense</button>
+                    <button type="reset">Reset</button>
+                </div>
+            </form>
+        </div>
+        <!-- Transactions List -->
+        <div class="transactions">
+            {{#if ExpenseTemp.length}}
+            <h2>Previous Expenses</h2>
+            {{#each ExpenseTemp}}
+            <div class="transaction-item">
+                <span>&#8377;&nbsp;{{this.amount}} &nbsp;&nbsp;&nbsp;{{this.date}} &nbsp;&nbsp;&nbsp; {{this.purpose}}</span>
+            </div>
+            {{/each}}
+            {{else}}
+            <h2>No Previous Expenses</h2>
+            {{/if}}
+        </div>
+    </div>
+    <!-- Font Awesome CDN for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script>
+        document.getElementById('inc').addEventListener('click', function (event) {
+            window.location.href = '/income';
+        });
+        document.getElementById('dash').addEventListener('click', function (event) {
+            window.location.href = '/';
+        }); 
+    </script>
+</body>
+
+</html>

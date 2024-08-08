@@ -1,0 +1,4 @@
+ref: refs/heads/main
+
+ git config --local user.email "omkumavat2004@gmail.com"
+  git config --local user.name "omkumavat"
